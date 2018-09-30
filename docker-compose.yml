@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  db:
+    image: mongo
+    ports:
+      - 27017:27017
+  
+  api:
+    build: .
+    ports:
+      - 3001:3001
+    environment:
+      - PORT=3001
+      - DATABASE_HOST=db
+    depends_on:
+      - db
